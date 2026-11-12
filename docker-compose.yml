@@ -1,0 +1,26 @@
+
+services:
+  mongodb:
+    image: mongo:8
+    container_name: agriguard-mongodb
+    restart: unless-stopped
+    volumes:
+      - mongodb_data:/data/db
+
+  backend:
+    build:
+      context: .
+      dockerfile: dockerfile.backend
+    container_name: agriguard-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      MONGODB_URI: mongodb://mongodb:27017
+      MISTRAL_API_KEY: ${MISTRAL_API_KEY}
+      TAVILY_API_KEY: ${TAVILY_API_KEY}
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodb_data:

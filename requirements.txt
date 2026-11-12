@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+python-multipart
+pillow
+torch
+torchvision
+python-dotenv
+pymongo
+langchain
+langchain-core
+langchain-mistralai
+tavily-python
+streamlit
+requests
+pillow
